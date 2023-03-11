@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   text: {
     marginTop: 4,
     fontSize: 26,
-    fontFamily: 'Montserrat-500',
+    fontFamily: 'Montserrat-400',
     marginLeft: 6
   },
 });
