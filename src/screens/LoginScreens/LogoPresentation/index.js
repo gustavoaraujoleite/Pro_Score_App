@@ -25,7 +25,7 @@ export default function LogoPresentation() {
           opacity: fadeAnim,
         }}
       >
-        <Text style={styles.text}>PRO Score</Text>
+        <Text style={styles.text}>PRO Score </Text>
       </Animated.View>
     </View>
   );
