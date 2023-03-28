@@ -1,6 +1,7 @@
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
+import Login from "./src/screens/LoginScreens/Login";
 import LogoPresentation from "./src/screens/LoginScreens/LogoPresentation";
 
 export default function App() {
@@ -26,7 +27,7 @@ export default function App() {
     //   <Text>Open up App.js to start working on your app!</Text>
     //   <StatusBar style="auto" />
     // </View>
-    <LogoPresentation />
+    <Login />
   );
 }
 
