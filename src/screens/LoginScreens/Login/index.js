@@ -6,6 +6,8 @@ import {
   StyleSheet,
   ImageBackground,
   Image,
+  Pressable,
+  ScrollView,
 } from "react-native";
 import login_background from "../../../../assets/images/login_background.png";
 import MainLogo from "../../../../assets/images/mainAppLogo.png";
@@ -13,6 +15,8 @@ import DefaultButton from "../../../components/UI/Buttons/DefaultButton";
 import LoginBars from "../../../components/UI/LoginBars";
 import googleIcon from "../../../../assets/images/googleIcon.png";
 import appleIcon from "../../../../assets/images/appleIcon.png";
+import SignInContent from "../../../components/LoginComponents/SignIn";
+import Register from "../../../components/LoginComponents/Register";
 export default function Login() {
   const [loginsection, setLoginsection] = useState(true);
   return (
@@ -24,37 +28,44 @@ export default function Login() {
         blurRadius={3}
       >
         <View style={styles.mainContentBox}>
-          <View style={styles.test}>
+          <View style={styles.boxInnerContainer}>
             <View>
               <Image source={MainLogo} style={styles.mainLogo} />
             </View>
 
             <View style={styles.barsContainer}>
-              <LoginBars
-                style={loginsection ? styles.activeBar : styles.nonActiveBar}
-                title="Sign in"
-                textStyle={
-                  loginsection ? styles.activeText : styles.nonActiveText
-                }
-              />
-              <LoginBars
-                style={!loginsection ? styles.activeBar : styles.nonActiveBar}
-                title="Sign up"
-                textStyle={[
-                  !loginsection ? styles.activeText : styles.nonActiveText,
-                  { marginLeft: 6 },
-                ]}
-              />
+              <Pressable onPress={() => setLoginsection(true)}>
+                <LoginBars
+                  style={loginsection ? styles.activeBar : styles.nonActiveBar}
+                  title="Sign in"
+                  textStyle={
+                    loginsection ? styles.activeText : styles.nonActiveText
+                  }
+                />
+              </Pressable>
+              <Pressable onPress={() => setLoginsection(false)}>
+                <LoginBars
+                  style={!loginsection ? styles.activeBar : styles.nonActiveBar}
+                  title="Sign up"
+                  textStyle={[
+                    !loginsection ? styles.activeText : styles.nonActiveText,
+                    { marginLeft: 6 },
+                  ]}
+                />
+              </Pressable>
             </View>
 
-            {/* SUBJECT */}
+            <ScrollView style={{ width: "100%" }}>
+              {loginsection && <SignInContent />}
+              {!loginsection && <Register />}
+            </ScrollView>
 
             <View style={styles.optionTextContainer}>
-              <LoginBars style={styles.conditionalBar} />
+              <View style={styles.conditionalBar}></View>
               <View>
                 <Text style={styles.optionText}>or</Text>
               </View>
-              <LoginBars style={styles.conditionalBar} />
+              <View style={styles.conditionalBar}></View>
             </View>
 
             <View style={styles.buttonsContainer}>
@@ -92,16 +103,16 @@ const styles = StyleSheet.create({
   },
   mainContentBox: {
     paddingVertical: 40,
-    paddingHorizontal: 56,
+    paddingHorizontal: 20,
     alignItems: "center",
-
     width: "60%",
+    height: "96%",
     backgroundColor: "rgba(255, 255, 255, 0.25)",
     borderRadius: 8,
   },
-  test: {
+  boxInnerContainer: {
     paddingVertical: 40,
-    paddingHorizontal: 56,
+    paddingHorizontal: 30,
     alignItems: "center",
     width: "100%",
   },
@@ -117,6 +128,7 @@ const styles = StyleSheet.create({
   activeBar: {
     height: 4,
     backgroundColor: "#235485",
+    marginBottom: 2,
   },
   nonActiveBar: {
     height: 2,
@@ -135,6 +147,7 @@ const styles = StyleSheet.create({
   optionTextContainer: {
     flexDirection: "row",
     marginTop: 53,
+    justifyContent: "space-between",
     alignItems: "center",
   },
   optionText: {
@@ -145,9 +158,9 @@ const styles = StyleSheet.create({
   conditionalBar: {
     backgroundColor: "#000",
     height: 2,
+    width: 60,
     marginHorizontal: 10,
     marginBottom: 0,
-    marginTop: 14,
   },
   buttonsContainer: {
     marginVertical: 41,
